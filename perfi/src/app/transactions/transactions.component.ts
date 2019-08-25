@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { TRANSACTIONS } from '../mocks/mock-transactions';
 import { Transaction } from '../models/transaction';
-import { TransactionType } from '../models/transaction-type';
 
 @Component({
   selector: 'app-transactions',
@@ -10,18 +10,15 @@ import { TransactionType } from '../models/transaction-type';
 })
 export class TransactionsComponent implements OnInit {
 
-  transaction = {
-    id: 1,
-    type: TransactionType.Expense,
-    amount: 12.70,
-    description: 'Test transaction',
-    transactionDate: new Date(),
-    valueDate: new Date()
-  };
+  transactions = TRANSACTIONS;
+  selectedTransaction: Transaction;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSelect(transaction: Transaction) {
+    this.selectedTransaction = transaction;
+  }
 }

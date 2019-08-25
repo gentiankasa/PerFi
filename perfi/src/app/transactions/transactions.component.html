@@ -1,31 +1,45 @@
-<!-- <h2>Transaction Type: {{transaction.type}}</h2> -->
-<div>
-    <label>
-        Transaction type:
-        <input [(ngModel)]="transaction.type" placeholder="type" />
-    </label>
-</div>
-<div>
-    <label>
-        Transaction Date: 
-        <input [(ngModel)]="transaction.transactionDate" placeholder="transaction date" type="date" />
-    </label>
-</div>
-<div>
-    <label>
-        Value Date: 
-        <input [(ngModel)]="transaction.valueDate" placeholder="value date" type="date" />
-    </label>
-</div>
-<div>
-    <label>
-        Transaction Amount:
-        <input [(ngModel)]="transaction.amount" placeholder="amount" type="number" />
-    </label>
-</div>
-<div>
-    <label>
-        Transaction Description:
-        <input [(ngModel)]="transaction.description" placeholder="description" type="text" />
-    </label>
-</div>
+<h2>Transactions</h2>
+<ul class="transactions">
+    <li *ngFor="let transaction of transactions" 
+        (click)="onSelect(transaction)" 
+        [class.selected]="transaction === selectedTransaction">
+        <span class="badge">{{transaction.id}}</span> {{transaction.type}} - {{transaction.amount}}
+    </li>
+</ul>
+
+<ng-container *ngIf="selectedTransaction">
+    <h2>Selected transaction: {{selectedTransaction.id}}</h2>
+    <div>
+        <span></span>
+        <div>
+            <label>
+                Transaction type:
+                <input [(ngModel)]="selectedTransaction.type" placeholder="type" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Transaction Date: 
+                <input [(ngModel)]="selectedTransaction.transactionDate" placeholder="transaction date" type="date" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Value Date: 
+                <input [(ngModel)]="selectedTransaction.valueDate" placeholder="value date" type="date" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Transaction Amount:
+                <input [(ngModel)]="selectedTransaction.amount" placeholder="amount" type="number" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Transaction Description:
+                <input [(ngModel)]="selectedTransaction.description" placeholder="description" type="text" />
+            </label>
+        </div>
+    </div>
+</ng-container>

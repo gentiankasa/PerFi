@@ -1,0 +1,37 @@
+<ng-container *ngIf="transaction">
+    <h2>Selected transaction: {{transaction.id}}</h2>
+    <div>
+        <span></span>
+        <div>
+            <label>
+                Transaction type:
+                <input [(ngModel)]="transaction.type" placeholder="type" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Transaction Date: 
+                <input [(ngModel)]="transaction.transactionDate" placeholder="transaction date" type="date" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Value Date: 
+                <input [(ngModel)]="transaction.valueDate" placeholder="value date" type="date" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Transaction Amount:
+                <input [(ngModel)]="transaction.amount" placeholder="amount" type="number" />
+            </label>
+        </div>
+        <div>
+            <label>
+                Transaction Description:
+                <input [(ngModel)]="transaction.description" placeholder="description" type="text" />
+            </label>
+        </div>
+    </div>
+</ng-container>
+<button (click)="goBack()">Go back</button>

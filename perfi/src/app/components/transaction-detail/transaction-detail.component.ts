@@ -33,4 +33,9 @@ export class TransactionDetailComponent implements OnInit {
   goBack(): void {
     this.location.back();
   }
+
+  save(): void {
+    this.transactionService.updateTransaction(this.transaction)
+        .subscribe(() => this.goBack());
+  }
 }

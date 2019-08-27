@@ -1,8 +1,36 @@
 <h2>Transactions</h2>
+
+<div>
+    <label>
+        Transaction date: <input #transactionDate type="date" />
+    </label>
+    <label>
+        Value date: <input #valueDate type="date" />
+    </label>
+    <label>
+        Transaction type: 
+        <select #transactionType>
+            <option value="0">Income</option>
+            <option value="1">Expense</option>
+        </select>
+    </label>
+    <label>
+        Amount: <input #amount type="number" />
+    </label>
+    <label>
+        Description: <input #description type="text" />
+    </label>
+    <!--  -->
+    <button (click)="add(transactionDate.value, valueDate.value, transactionType.options[transactionType.selectedIndex].value, amount.value, description.value); transactionDate.value = ''; valueDate.value = ''; transactionType.selectedIndex = 0; amount.value = ''; description.value = '';">
+        Add
+    </button>
+</div>
+
 <ul class="transactions">
     <li *ngFor="let transaction of transactions">
         <a routerLink="/transactions/{{transaction.id}}">
             <span class="badge">{{transaction.id}}</span> {{transaction.type}} - {{transaction.amount}}
         </a>
+        <button class="delete" title="delete transaction" (click)="delete(transaction)">x</button>
     </li>
 </ul>

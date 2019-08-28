@@ -11,6 +11,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import { TransactionsComponent } from './components/transactions/transactions.component';
 import { TransactionDetailComponent } from './components/transaction-detail/transaction-detail.component';
 import { InMemoryDataService } from './services/in-memory-data/in-memory-data.service';
+import { TransactionSearchComponent } from './components/transaction-search/transaction-search.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InMemoryDataService } from './services/in-memory-data/in-memory-data.se
     TransactionsComponent,
     TransactionDetailComponent,
     MessagesComponent,
-    DashboardComponent
+    DashboardComponent,
+    TransactionSearchComponent
   ],
   imports: [
     BrowserModule,

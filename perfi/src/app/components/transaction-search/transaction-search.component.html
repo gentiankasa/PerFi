@@ -1,0 +1,38 @@
+<div id="search-component">
+    <div>
+        <h4>
+            Transaction date
+        </h4>
+        <div>
+            <label for="transaction-date-from">From:</label>
+            <input #transactionDateFrom id="transaction-date-from" type="date" 
+                   (input)="search(transactionDateFrom.value, transactionDateTo.value, valueDateFrom.value, valueDateTo.value)" />
+
+            <label for="transaction-date-to">To:</label>
+            <input #transactionDateTo id="transaction-date-to" type="date" 
+                   (input)="search(transactionDateFrom.value, transactionDateTo.value, valueDateFrom.value, valueDateTo.value)" />
+        </div>
+    </div>
+    <div>
+        <h4>
+            Value date
+        </h4>
+        <div>
+            <label for="value-date-from">From:</label>
+            <input #valueDateFrom id="value-date-from" type="date" 
+                   (input)="search(transactionDateFrom.value, transactionDateTo.value, valueDateFrom.value, valueDateTo.value)" />
+
+            <label for="value-date-to">To:</label>
+            <input #valueDateTo id="value-date-to" type="date" 
+                   (input)="search(transactionDateFrom.value, transactionDateTo.value, valueDateFrom.value, valueDateTo.value)" />
+        </div>
+    </div>
+
+    <ul class="search-result">
+        <li *ngFor="let transaction of transactions$ | async">
+            <a routerLink="/detail/{{transaction.id}}">
+                {{transaction.amount}}
+            </a>
+        </li>
+    </ul>
+</div>

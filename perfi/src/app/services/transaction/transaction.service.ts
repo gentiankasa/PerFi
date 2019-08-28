@@ -5,6 +5,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Transaction } from '../../models/transaction';
 import { MessageService } from '../message/message.service';
+import { TransactionSearchParam } from 'src/app/models/transaction-search-param';
 
 @Injectable({
   providedIn: 'root'
@@ -66,6 +67,21 @@ export class TransactionService {
                .pipe(
                  tap(_ => this.log(`deleted transaction w/ id=${id}`)),
                  catchError(this.handleError<Transaction>('deleteTransaction'))
+               );
+  }
+
+  // GET: search transactions
+  searchTransactions(searchTerms: TransactionSearchParam) {
+    if (!searchTerms.transactionDateFrom
+        && !searchTerms.transactionDateTo
+        && !searchTerms.valueDateFrom
+        && !searchTerms.valueDateTo) {
+      return of([]);
+    }
+    return this.http.get<Transaction[]>(`${this.transactionsUrl}/search?transactionDateFrom=${searchTerms.transactionDateFrom}&transactionDateTo=${searchTerms.transactionDateTo}&valueDateFrom=${searchTerms.valueDateFrom}&valueDateTo=${searchTerms.valueDateTo}`)
+               .pipe(
+                 tap(_ => this.log(`found transactions with searched parameters`)),
+                 catchError(this.handleError<Transaction[]>('searchTransactions', []))
                );
   }
 
